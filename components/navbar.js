@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navItems = [
   { name: "Inicio", href: "/" },
@@ -27,9 +28,16 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Link href="/" className="text-2xl font-bold text-white">
+            {/* <Link href="/" className="text-2xl font-bold text-white">
               SIMET <span className="text-orange-500">AG SAC</span>
-            </Link>
+            </Link> */}
+
+            <Image
+              src="/simetHorizontal.png"
+              alt="Logo SIMET AG SAC"
+              width={200}
+              height={200}
+            />
           </motion.div>
 
           {/* Desktop Navigation */}

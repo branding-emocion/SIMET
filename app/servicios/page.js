@@ -302,7 +302,7 @@ export default function ServiciosPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="py-20 bg-black text-white">
+      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e] to-blue-900 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -313,7 +313,7 @@ export default function ServiciosPage() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Nuestros Servicios
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Soluciones industriales metalmecánicas integrales con la más alta
               calidad y tecnología de vanguardia
             </p>
@@ -322,7 +322,7 @@ export default function ServiciosPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-[#23398e]/20 relative overflow-hidden">
         <div className="container mx-auto px-4 relative">
           <motion.div
             variants={staggerContainer}
@@ -339,8 +339,8 @@ export default function ServiciosPage() {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <Card className="relative h-full bg-gray-800 shadow-2xl border border-gray-700 overflow-hidden">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#23398e] via-orange-500 to-[#23398e] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <Card className="relative h-full bg-gradient-to-br from-gray-800 to-[#23398e]/10 shadow-2xl border border-[#23398e]/30 overflow-hidden">
                   <ServiceGallery
                     images={service.gallery}
                     title={service.title}
@@ -355,13 +355,13 @@ export default function ServiciosPage() {
                           key={featureIndex}
                           className="flex items-center text-sm text-gray-300"
                         >
-                          <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full mr-3 shadow-sm"></div>
+                          <div className="w-2 h-2 bg-gradient-to-r from-[#23398e] to-orange-500 rounded-full mr-3 shadow-sm"></div>
                           <span className="font-medium">{feature}</span>
                         </div>
                       ))}
                     </div>
                     <Link href="/contacto">
-                      <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 text-white border-0">
+                      <Button className="w-full bg-gradient-to-r from-[#23398e] to-orange-500 hover:from-[#1a2d73] hover:to-orange-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 text-white border-0">
                         Solicitar Cotización
                       </Button>
                     </Link>
@@ -374,9 +374,9 @@ export default function ServiciosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e]/90 to-black text-white relative overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-orange-500/5 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#23398e]/20 rounded-full blur-xl"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -386,12 +386,12 @@ export default function ServiciosPage() {
             className="text-center"
           >
             <div className="relative inline-block mb-8">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-orange-400 rounded-2xl blur opacity-20"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-[#23398e] rounded-2xl blur opacity-20"></div>
               <h2 className="relative text-4xl font-bold mb-6">
                 ¿Necesitas un servicio personalizado?
               </h2>
             </div>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
               Contáctanos para discutir tus necesidades específicas y
               desarrollar una solución a medida para tu proyecto industrial
               metalmecánico
@@ -399,7 +399,7 @@ export default function ServiciosPage() {
             <Link href="/contacto">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:-translate-y-1 px-8 py-4 text-lg text-white border-0"
+                className="bg-gradient-to-r from-orange-500 to-[#23398e] hover:from-orange-600 hover:to-[#1a2d73] shadow-2xl hover:shadow-[#23398e]/25 transition-all duration-300 transform hover:-translate-y-1 px-8 py-4 text-lg text-white border-0"
               >
                 Contactar Ahora
               </Button>

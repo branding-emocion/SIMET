@@ -54,7 +54,12 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-black relative overflow-hidden">
+      <section
+        className="min-h-screen flex items-center bg-black relative overflow-hidden"
+        style={{
+          background: `linear-gradient(135deg, #23398e 0%, #000000 50%, #23398e 100%)`,
+        }}
+      >
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -75,7 +80,10 @@ export default function HomePage() {
               className="text-white order-2 lg:order-1"
             >
               <motion.div
-                className="inline-block bg-orange-500 text-black px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6"
+                className="inline-block text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6"
+                style={{
+                  background: `linear-gradient(45deg, #23398e, #f97316)`,
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.8 }}
@@ -97,7 +105,7 @@ export default function HomePage() {
               </motion.h1>
 
               <motion.p
-                className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 max-w-lg"
+                className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-200 max-w-lg"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
@@ -124,8 +132,10 @@ export default function HomePage() {
                 <Link href="/contacto">
                   <Button
                     size="lg"
-                    variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-black bg-transparent w-full sm:w-auto"
+                    className="text-white font-semibold w-full sm:w-auto border-2 border-white hover:text-black transition-colors"
+                    style={{
+                      backgroundColor: "#23398e",
+                    }}
                   >
                     Contactar
                   </Button>
@@ -155,7 +165,7 @@ export default function HomePage() {
       </section>
 
       {/* Client Logos */}
-      <section className="py-8 sm:py-12 bg-gray-900">
+      <section className="py-8 sm:py-12" style={{ backgroundColor: "#23398e" }}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
@@ -170,7 +180,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-gray-400 font-semibold text-sm sm:text-base lg:text-lg whitespace-nowrap flex-shrink-0"
+                className="text-white/80 font-semibold text-sm sm:text-base lg:text-lg whitespace-nowrap flex-shrink-0"
               >
                 {client}
               </motion.div>
@@ -205,7 +215,12 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="text-white order-1 lg:order-2"
             >
-              <div className="inline-block bg-orange-500 text-black px-3 py-1 rounded text-xs sm:text-sm font-semibold mb-4">
+              <div
+                className="inline-block text-white px-3 py-1 rounded text-xs sm:text-sm font-semibold mb-4"
+                style={{
+                  background: `linear-gradient(45deg, #23398e, #f97316)`,
+                }}
+              >
                 QUIÉNES SOMOS
               </div>
 
@@ -223,7 +238,13 @@ export default function HomePage() {
               </p>
 
               <Link href="/nosotros">
-                <Button className="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black">
+                <Button
+                  className="font-semibold border-2 text-white hover:text-white transition-colors"
+                  style={{
+                    backgroundColor: "#23398e",
+                    borderColor: "#23398e",
+                  }}
+                >
                   Leer Más
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -234,7 +255,10 @@ export default function HomePage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gray-900">
+      <section
+        className="py-12 sm:py-16 lg:py-20"
+        style={{ backgroundColor: "#23398e" }}
+      >
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -245,7 +269,7 @@ export default function HomePage() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
               NUESTROS <span className="text-orange-500">SERVICIOS</span>
             </h2>
-            <p className="text-gray-400 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto">
+            <p className="text-white/80 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto">
               Soluciones integrales para la industria metalmecánica
             </p>
           </motion.div>
@@ -262,7 +286,12 @@ export default function HomePage() {
                 className="group cursor-pointer"
               >
                 <Link href={service.href}>
-                  <div className="bg-orange-500 p-6 sm:p-8 rounded-lg h-full flex flex-col justify-between hover:bg-orange-600 transition-colors">
+                  <div
+                    className="p-6 sm:p-8 rounded-lg h-full flex flex-col justify-between transition-all duration-300 hover:shadow-2xl"
+                    style={{
+                      background: `linear-gradient(135deg, #f97316 0%, #ea580c 100%)`,
+                    }}
+                  >
                     <div>
                       <div className="text-black/20 text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
                         {service.number}
@@ -296,7 +325,12 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="text-white order-2 lg:order-1"
             >
-              <div className="inline-block bg-orange-500 text-black px-3 py-1 rounded text-xs sm:text-sm font-semibold mb-4">
+              <div
+                className="inline-block text-white px-3 py-1 rounded text-xs sm:text-sm font-semibold mb-4"
+                style={{
+                  background: `linear-gradient(45deg, #23398e, #f97316)`,
+                }}
+              >
                 DESARROLLO DE PROYECTOS
               </div>
 
@@ -314,7 +348,13 @@ export default function HomePage() {
               </p>
 
               <Link href="/proyectos">
-                <Button className="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black">
+                <Button
+                  className="font-semibold border-2 text-white hover:text-white transition-colors"
+                  style={{
+                    backgroundColor: "#23398e",
+                    borderColor: "#23398e",
+                  }}
+                >
                   Ver Proyectos
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

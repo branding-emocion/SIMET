@@ -26,7 +26,7 @@ export default function ContactoPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="py-20 bg-black text-white">
+      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e] to-blue-900 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -35,7 +35,7 @@ export default function ContactoPage() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Contáctanos</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Estamos listos para ayudarte con tu próximo proyecto industrial
               metalmecánico. Ponte en contacto con SIMET AG SAC
             </p>
@@ -44,7 +44,7 @@ export default function ContactoPage() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-[#23398e]/20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -77,7 +77,7 @@ export default function ContactoPage() {
                   variants={fadeInUp}
                   className="flex items-center space-x-4"
                 >
-                  <div className="bg-orange-500 p-3 rounded-lg">
+                  <div className="bg-gradient-to-r from-[#23398e] to-orange-500 p-3 rounded-lg">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -93,7 +93,7 @@ export default function ContactoPage() {
                   variants={fadeInUp}
                   className="flex items-center space-x-4"
                 >
-                  <div className="bg-orange-500 p-3 rounded-lg">
+                  <div className="bg-gradient-to-r from-orange-500 to-[#23398e] p-3 rounded-lg">
                     <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -107,7 +107,7 @@ export default function ContactoPage() {
                   variants={fadeInUp}
                   className="flex items-center space-x-4"
                 >
-                  <div className="bg-orange-500 p-3 rounded-lg">
+                  <div className="bg-gradient-to-r from-[#23398e] to-orange-500 p-3 rounded-lg">
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -123,7 +123,7 @@ export default function ContactoPage() {
                   variants={fadeInUp}
                   className="flex items-center space-x-4"
                 >
-                  <div className="bg-orange-500 p-3 rounded-lg">
+                  <div className="bg-gradient-to-r from-orange-500 to-[#23398e] p-3 rounded-lg">
                     <Clock className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -146,7 +146,7 @@ export default function ContactoPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="shadow-xl bg-gray-800 border border-gray-700">
+              <Card className="shadow-xl bg-gradient-to-br from-gray-800 to-[#23398e]/10 border border-[#23398e]/30">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-white mb-6">
                     Envíanos un Mensaje
@@ -239,7 +239,7 @@ export default function ContactoPage() {
                     </div>
 
                     <Button
-                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0"
+                      className="w-full bg-gradient-to-r from-[#23398e] to-orange-500 hover:from-[#1a2d73] hover:to-orange-600 text-white border-0"
                       size="lg"
                     >
                       <Send className="mr-2 h-5 w-5" />
@@ -254,7 +254,7 @@ export default function ContactoPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e]/90 to-black">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -266,7 +266,7 @@ export default function ContactoPage() {
             <h2 className="text-3xl font-bold text-white mb-6">
               Nuestra Ubicación
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-blue-100">
               Visítanos en nuestras instalaciones industriales
             </p>
           </motion.div>
@@ -276,7 +276,7 @@ export default function ContactoPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-gray-800 border border-gray-700 h-96 rounded-lg flex items-center justify-center"
+            className="bg-gradient-to-br from-gray-800 to-[#23398e]/20 border border-[#23398e]/30 h-96 rounded-lg flex items-center justify-center"
           >
             <p className="text-gray-400">
               Mapa interactivo de SIMET AG SAC aquí

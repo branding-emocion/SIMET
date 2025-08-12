@@ -23,21 +23,20 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 w-full bg-black/95 backdrop-blur-sm border-b border-gray-800 z-50"
+      className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50 shadow-sm"
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <motion.div whileHover={{ scale: 1.05 }}>
-            {/* <Link href="/" className="text-2xl font-bold text-white">
-              SIMET <span className="text-orange-500">AG SAC</span>
-            </Link> */}
-
-            <Image
-              src="/simetHorizontal.png"
-              alt="Logo SIMET AG SAC"
-              width={200}
-              height={200}
-            />
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/simetH.png"
+                alt="Logo SIMET AG SAC"
+                width={180}
+                height={50}
+                className="h-12 w-auto"
+              />
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -46,10 +45,10 @@ export default function Navbar() {
               <motion.div key={item.name} whileHover={{ scale: 1.05 }}>
                 <Link
                   href={item.href}
-                  className={`transition-colors ${
+                  className={`transition-colors font-medium ${
                     pathname === item.href
                       ? "text-orange-500 font-semibold"
-                      : "text-gray-300 hover:text-orange-500"
+                      : "text-gray-700 hover:text-orange-500"
                   }`}
                 >
                   {item.name}
@@ -60,7 +59,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-gray-700"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -79,10 +78,10 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block py-2 transition-colors ${
+                className={`block py-2 transition-colors font-medium ${
                   pathname === item.href
                     ? "text-orange-500 font-semibold"
-                    : "text-gray-300 hover:text-orange-500"
+                    : "text-gray-700 hover:text-orange-500"
                 }`}
                 onClick={() => setIsOpen(false)}
               >

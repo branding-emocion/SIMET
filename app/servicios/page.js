@@ -300,20 +300,21 @@ function ServiceGallery({ images, title }) {
 
 export default function ServiciosPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e] to-blue-900 text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gray-50 text-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(35,57,142,0.1),transparent_50%)]"></div>
+        <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#23398e]">
               Nuestros Servicios
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Soluciones industriales metalmecánicas integrales con la más alta
               calidad y tecnología de vanguardia
             </p>
@@ -322,7 +323,8 @@ export default function ServiciosPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-[#23398e]/20 relative overflow-hidden">
+      <section className="py-20 bg-gray-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(35,57,142,0.05),transparent_50%)]"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div
             variants={staggerContainer}
@@ -340,20 +342,20 @@ export default function ServiciosPage() {
                 className="relative group"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#23398e] via-orange-500 to-[#23398e] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <Card className="relative h-full bg-gradient-to-br from-gray-800 to-[#23398e]/10 shadow-2xl border border-[#23398e]/30 overflow-hidden">
+                <Card className="relative h-full bg-white shadow-xl border border-gray-200 overflow-hidden group-hover:shadow-2xl transition-all duration-300">
                   <ServiceGallery
                     images={service.gallery}
                     title={service.title}
                   />
                   <CardContent className="p-6">
-                    <p className="text-gray-300 mb-6 leading-relaxed">
+                    <p className="text-gray-600 mb-6 leading-relaxed">
                       {service.description}
                     </p>
                     <div className="space-y-3 mb-6">
                       {service.features.map((feature, featureIndex) => (
                         <div
                           key={featureIndex}
-                          className="flex items-center text-sm text-gray-300"
+                          className="flex items-center text-sm text-gray-700"
                         >
                           <div className="w-2 h-2 bg-gradient-to-r from-[#23398e] to-orange-500 rounded-full mr-3 shadow-sm"></div>
                           <span className="font-medium">{feature}</span>
@@ -374,9 +376,9 @@ export default function ServiciosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#23398e] via-[#23398e]/90 to-black text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-gray-100 text-gray-900 relative overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#23398e]/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#23398e]/10 rounded-full blur-xl"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -386,12 +388,12 @@ export default function ServiciosPage() {
             className="text-center"
           >
             <div className="relative inline-block mb-8">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-[#23398e] rounded-2xl blur opacity-20"></div>
-              <h2 className="relative text-4xl font-bold mb-6">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-[#23398e]/20 rounded-2xl blur opacity-50"></div>
+              <h2 className="relative text-4xl font-bold mb-6 text-[#23398e]">
                 ¿Necesitas un servicio personalizado?
               </h2>
             </div>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
               Contáctanos para discutir tus necesidades específicas y
               desarrollar una solución a medida para tu proyecto industrial
               metalmecánico

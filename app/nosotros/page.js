@@ -54,11 +54,11 @@ export default function NosotrosPage() {
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-[#23398e] to-orange-600 rounded-2xl blur opacity-20"></div>
               <Image
-                src="/placeholder.svg?height=500&width=600&text=SIMET+AG+SAC+Equipo+Industrial"
+                src="/soldadoNosotros.jpg"
                 alt="Equipo SIMET AG SAC"
                 width={600}
                 height={500}
-                className="relative rounded-2xl shadow-2xl border border-gray-200"
+                className="relative rounded-2xl shadow-2xl border border-gray-200 mx-auto"
               />
             </motion.div>
             <motion.div
@@ -70,20 +70,28 @@ export default function NosotrosPage() {
             >
               <div className="relative bg-white p-8 rounded-2xl shadow-2xl border border-gray-200">
                 <h2 className="text-4xl font-bold text-[#23398e] mb-6 relative">
-                  Nuestra Historia
+                  ¿Quiénes Somos?{" "}
                   <div className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-orange-500 to-[#23398e]"></div>
                 </h2>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  SIMET AG SAC es una empresa especializada en la industria
-                  metalmecánica con más de 10 años de experiencia. Comenzamos
-                  como un pequeño taller especializado y hoy somos una empresa
-                  integral que ofrece soluciones completas para la industria.
+                <p className="text-gray-600 mb-2 leading-relaxed">
+                  Somos una industria metalmecánica, con más de 10 años en el
+                  mercado ejecutando proyectos de diseño, fabricación,
+                  mantenimiento y montaje de estructuras y productos metálicos
+                  para el sector agroindustrial, industria minera y pesquera.
                 </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Nuestro compromiso con la innovación constante y la excelencia
-                  operacional nos ha permitido establecer relaciones duraderas
-                  con clientes de diversos sectores industriales,
-                  consolidándonos como líderes en confiabilidad industrial.
+                <p className="text-gray-600 mb-2 leading-relaxed">
+                  Contamos con un equipo altamente calificado y experimentado en
+                  todas las especialidades, profesionales dinámicos y capaces de
+                  enfrentar los nuevos retos y desafíos del mundo de hoy.
+                </p>
+                <p className="text-gray-600 mb-2 leading-relaxed">
+                  Durante estos años de servicio hemos logrado consolidar una
+                  sólida cartera de clientes con éxitos satisfactorios en el
+                  desarrollo de nuestros productos y servicios, quienes siguen
+                  premiando nuestro esfuerzo y dedicación por atender sus
+                  necesidades y satisfacer sus requerimientos, garantizando
+                  resultados óptimos en tiempo récord y con precios competitivos
+                  en el mercado.
                 </p>
               </div>
             </motion.div>
@@ -111,11 +119,11 @@ export default function NosotrosPage() {
                     </h3>
                   </div>
                   <p className="text-gray-600 text-center leading-relaxed">
-                    Brindar soluciones industriales integrales con los más altos
-                    estándares de calidad, confiabilidad y eficiencia, superando
-                    las expectativas de nuestros clientes y contribuyendo al
-                    desarrollo del sector industrial con resistencia, precisión
-                    y calidad sin límites.
+                    Asegurar la calidad en la fabricación, montaje y
+                    mantenimiento de los productos y servicios que brindamos a
+                    todos nuestros clientes a través de la verificación y
+                    seguimiento profesional e independiente, creando confianza y
+                    reconocimiento de nuestros clientes.
                   </p>
                 </CardContent>
               </Card>
@@ -135,11 +143,11 @@ export default function NosotrosPage() {
                     </h3>
                   </div>
                   <p className="text-gray-600 text-center leading-relaxed">
-                    Ser la empresa líder en servicios industriales
-                    metalmecánicos, reconocida por nuestra innovación constante,
-                    compromiso con la excelencia operacional y por ser el socio
-                    estratégico preferido de nuestros clientes en toda la
-                    región.
+                    Ser una industria líder e innovadora en los servicios de
+                    fabricación, montaje y mantenimiento metalmecánico sobre
+                    nuestra marca. Dirigiremos nuestro liderazgo con entusiasmo
+                    y con total compromiso de brindar soluciones y satisfacción
+                    a nuestros clientes.
                   </p>
                 </CardContent>
               </Card>
@@ -220,7 +228,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gray-50 text-gray-900 relative overflow-hidden">
+      {/* <section className="py-20 bg-gray-50 text-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -290,7 +298,7 @@ export default function NosotrosPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

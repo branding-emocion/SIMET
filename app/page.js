@@ -5,8 +5,16 @@ import { ArrowRight, Factory, Wrench, Paintbrush, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { servicios } from "@/lib/servicios-data";
 
 export default function HomePage() {
+  const categorias = [
+    "Todos",
+    ...Array.from(new Set(servicios.map((s) => s.categoria))),
+  ];
+
+  console.log("categorias", categorias);
+
   const services = [
     {
       number: "01",
@@ -43,13 +51,22 @@ export default function HomePage() {
   ];
 
   const clients = [
-    "GLORIA",
-    "CAMPOSOL",
-    "DANPER",
-    "TALSA",
-    "COPEINCA",
-    "AUSTRAL",
+    "ReliX Water",
+    "Danper",
+    "Green Perú",
+    "Irricorp",
+    "Caprari",
+    "Irrialtec S.A.C.",
+    "Netafim",
+    "Arato",
+    "NaanDanJain",
+    "Camposol",
+    "Hortifrut",
+    "Viru",
+    "Hass Perú",
+    "Talsa",
   ];
+  const duplicatedClients = [...clients, ...clients];
 
   return (
     <div className="min-h-screen bg-white">
@@ -150,7 +167,7 @@ export default function HomePage() {
             >
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=600&width=500&text=Trabajador+Industrial+Soldando"
+                  src="/soldador.jpg"
                   alt="Trabajador industrial"
                   width={500}
                   height={600}
@@ -164,26 +181,48 @@ export default function HomePage() {
       </section>
 
       {/* Client Logos */}
-      <section className="py-8 sm:py-12 bg-gray-50">
+      <section className="py-8 sm:py-12 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex justify-center items-center gap-4 sm:gap-6 lg:gap-12 overflow-x-auto pb-2"
+            className="relative"
           >
-            {clients.map((client, index) => (
-              <motion.div
-                key={client}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-gray-600 font-semibold text-sm sm:text-base lg:text-lg whitespace-nowrap flex-shrink-0"
-              >
-                {client}
-              </motion.div>
-            ))}
+            <motion.div
+              className="flex gap-8 sm:gap-12 lg:gap-16"
+              animate={{
+                x: [0, -50 * clients.length], // Se mueve la mitad del ancho total
+              }}
+              transition={{
+                x: {
+                  repeat: Number.POSITIVE_INFINITY,
+                  repeatType: "loop",
+                  duration: 30, // Duración del ciclo completo
+                  ease: "linear",
+                },
+              }}
+              style={{
+                width: `${100 * clients.length}%`, // Ancho total para acomodar todos los elementos
+              }}
+            >
+              {duplicatedClients.map((client, index) => (
+                <motion.div
+                  key={`${client}-${index}`}
+                  className="text-gray-600 font-semibold text-sm sm:text-base lg:text-lg whitespace-nowrap flex-shrink-0 min-w-fit"
+                  whileHover={{
+                    scale: 1.05,
+                    color: "#374151", // text-gray-700
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {client}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10" />
           </motion.div>
         </div>
       </section>
@@ -199,7 +238,7 @@ export default function HomePage() {
               className="relative order-2 lg:order-1"
             >
               <Image
-                src="/placeholder.svg?height=400&width=600&text=Planta+Industrial+SIMET"
+                src="/trabadores.jpg"
                 alt="Planta industrial SIMET"
                 width={600}
                 height={400}
@@ -269,9 +308,9 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {services.map((service, index) => (
+            {categorias.map((service, index) => (
               <motion.div
-                key={service.number}
+                key={service}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -279,7 +318,7 @@ export default function HomePage() {
                 whileHover={{ scale: 1.05 }}
                 className="group cursor-pointer"
               >
-                <Link href={service.href}>
+                <Link href={`/servicios?categoria=${service}`}>
                   <div
                     className="p-6 sm:p-8 rounded-lg h-full flex flex-col justify-between transition-all duration-300 hover:shadow-2xl"
                     style={{
@@ -287,19 +326,19 @@ export default function HomePage() {
                     }}
                   >
                     <div>
-                      <div className="text-white/20 text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
+                      {/* <div className="text-white/20 text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
                         {service.number}
-                      </div>
-                      <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-3 sm:mb-4" />
+                      </div> */}
+                      <Factory className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-3 sm:mb-4" />
                       <h3 className="text-white font-bold text-lg sm:text-xl mb-2">
-                        {service.title}
+                        {service}
                       </h3>
-                      <p className="text-white/90 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">
+                      {/* <p className="text-white/90 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">
                         {service.subtitle}
                       </p>
                       <p className="text-white/80 text-xs sm:text-sm">
                         {service.description}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </Link>

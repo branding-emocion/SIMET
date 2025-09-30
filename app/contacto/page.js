@@ -24,7 +24,7 @@ const staggerContainer = {
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-8">
       {/* Hero Section */}
       <section className="py-20 bg-gray-50 text-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(35,57,142,0.1),transparent_50%)]"></div>
@@ -35,7 +35,7 @@ export default function ContactoPage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#23398e]">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#23398e] uppercase">
               Contáctanos
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -274,40 +274,6 @@ export default function ContactoPage() {
               </Card>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-gray-100 relative overflow-hidden">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#23398e]/10 rounded-full blur-xl"></div>
-        <div className="container mx-auto px-4 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-[#23398e] mb-6">
-              Nuestra Ubicación
-            </h2>
-            <p className="text-xl text-gray-600">
-              Visítanos en nuestras instalaciones industriales
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white border border-gray-200 h-96 rounded-lg flex items-center justify-center shadow-xl"
-          >
-            <p className="text-gray-500">
-              Mapa interactivo de SIMET AG SAC aquí
-            </p>
-          </motion.div>
         </div>
       </section>
     </div>

@@ -6,14 +6,13 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { servicios } from "@/lib/servicios-data";
+import HeroCarousel from "@/components/HeroSection";
 
 export default function HomePage() {
   const categorias = [
     "Todos",
     ...Array.from(new Set(servicios.map((s) => s.categoria))),
   ];
-
-  console.log("categorias", categorias);
 
   const services = [
     {
@@ -71,115 +70,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section
-        className="min-h-screen flex items-center relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)`,
-        }}
-      >
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #23398e 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          ></div>
-        </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-gray-900 order-2 lg:order-1"
-            >
-              <motion.div
-                className="inline-block text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6"
-                style={{
-                  background: `linear-gradient(45deg, #23398e, #f97316)`,
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.8 }}
-              >
-                SIMET AG SAC
-              </motion.div>
-
-              <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-              >
-                INDUSTRIA
-                <br />
-                <span className="text-orange-500">METALMECÁNICA</span>
-                <br />
-                EXPERTOS
-              </motion.h1>
-
-              <motion.p
-                className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-600 max-w-lg"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
-                Más de 10 años ejecutando proyectos de diseño, fabricación y
-                mantenimiento para el sector agroindustrial, minero y pesquero.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-              >
-                <Link href="/servicios">
-                  <Button
-                    size="lg"
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-semibold w-full sm:w-auto"
-                  >
-                    Ver Servicios
-                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  </Button>
-                </Link>
-                <Link href="/contacto">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-blue-900 font-semibold w-full sm:w-auto border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition-colors bg-transparent"
-                    style={{ borderColor: "#23398e", color: "#23398e" }}
-                  >
-                    Contactar
-                  </Button>
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative order-1 lg:order-2"
-            >
-              <div className="relative">
-                <Image
-                  src="/soldador.jpg"
-                  alt="Trabajador industrial"
-                  width={500}
-                  height={600}
-                  className="rounded-lg w-full h-auto max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+      <HeroCarousel />
       {/* Client Logos */}
       <section className="py-8 sm:py-12 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -400,7 +292,7 @@ export default function HomePage() {
               className="relative order-1 lg:order-2"
             >
               <Image
-                src="/placeholder.svg?height=400&width=600&text=Proyecto+Industrial+en+Desarrollo"
+                src=""
                 alt="Desarrollo de proyectos"
                 width={600}
                 height={400}

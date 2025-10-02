@@ -15,14 +15,11 @@ import {
   Warehouse,
 } from "lucide-react";
 import { signOut } from "firebase/auth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePathname, useRouter } from "next/navigation";
-import SoloClientes from "./SoloClients";
 import Image from "next/image";
 
 const DashboardLayout = ({ children }) => {
   const [{ user, claims }, loading, error] = useAuthState(auth);
-  const [Comentarios, setComentarios] = useState([]);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -94,12 +91,6 @@ const DashboardLayout = ({ children }) => {
                         <span className="ml-3 text-sm font-medium tracking-wide truncate ">
                           {men.name}
                         </span>
-
-                        {men?.CantComentarios && (
-                          <span className="ml-auto text-xs bg-red-600 text-white px-2 py-1 rounded-full font-semibold">
-                            {Comentarios?.length || 0}
-                          </span>
-                        )}
                       </Link>
                     </>
                   )}

@@ -24,28 +24,32 @@ const staggerContainer = {
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen bg-white pt-8">
-      {/* Hero Section */}
-      <section className="py-20 bg-gray-50 text-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(35,57,142,0.1),transparent_50%)]"></div>
-        <div className="container mx-auto px-4 relative">
+    <div className="min-h-screen  ">
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/Contacto.jpg')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-slate-900/70" />
+
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#23398e] uppercase">
+            <h1 className="text-3xl md:text-6xl font-bold mb-6 font-serif uppercase">
               Contáctanos
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
               Estamos listos para ayudarte con tu próximo proyecto industrial
               metalmecánico. Ponte en contacto con SIMET AG SAC
             </p>
           </motion.div>
         </div>
       </section>
-
       {/* Contact Content */}
       <section className="py-20 bg-gray-100 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(35,57,142,0.05),transparent_50%)]"></div>

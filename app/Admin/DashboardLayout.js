@@ -10,6 +10,7 @@ import {
   File,
   MessageCirclePlus,
   MonitorXIcon,
+  University,
   Users,
   WallpaperIcon,
   Warehouse,
@@ -38,6 +39,12 @@ const DashboardLayout = ({ children }) => {
       name: "Productos",
       link: "/Admin/Productos",
       icon: <WallpaperIcon className="w-5 h-5" />,
+      // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
+    },
+    {
+      name: "Proyectos",
+      link: "/Admin/Projects",
+      icon: <University className="w-5 h-5" />,
       // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
     },
   ];

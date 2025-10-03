@@ -184,14 +184,14 @@ const Header = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/Laudos">
+                  <Link href="/DesarrolloProyectos">
                     <NavigationMenuLink
                       className={cn(
                         "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                         isScrolled ? "text-gray-700 " : "text-white  "
                       )}
                     >
-                      Banco de Laudos
+                      Desarrollo de proyectos{" "}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -204,20 +204,7 @@ const Header = () => {
                         isScrolled ? "text-gray-700" : "text-white"
                       )}
                     >
-                      Nuestro Equipo
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <Link href="/Contacto">
-                    <NavigationMenuLink
-                      className={cn(
-                        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-                        isScrolled ? "text-gray-700" : "text-white"
-                      )}
-                    >
-                      Contacto
+                      Clientes{" "}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>

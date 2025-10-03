@@ -22,25 +22,32 @@ export default function NosotrosPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gray-50 text-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/QuienesSomos/QuienesSomos.jpg')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-slate-900/70" />
+
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#23398e]">
-              ¿Quiénes Somos?
+            <h1 className="text-3xl md:text-6xl font-bold mb-6 font-serif uppercase">
+              Nuestro Equipo
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Conoce nuestra historia, misión y los valores que nos impulsan a
-              ser líderes en el sector industrial
+            <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+              Profesionales altamente calificados con décadas de experiencia
+              combinada, comprometidos con brindar el mejor servicio legal a
+              nuestros clientes
             </p>
           </motion.div>
         </div>
       </section>
-
       {/* About Content */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">

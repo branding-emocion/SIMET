@@ -83,11 +83,6 @@ export default function ProductoForm({ producto, onSuccess, onCancel }) {
       return;
     }
 
-    if (!precio || Number.parseFloat(precio) <= 0) {
-      setError("El precio debe ser mayor a 0");
-      return;
-    }
-
     if (!categoriaId) {
       setError("Debes seleccionar una categoría");
       return;
@@ -107,7 +102,7 @@ export default function ProductoForm({ producto, onSuccess, onCancel }) {
       const productoData = {
         nombre: nombre.trim(),
         descripcion: descripcion.trim(),
-        precio: Number.parseFloat(precio),
+        precio: Number.parseFloat(precio || 0),
         categoriaId,
         imagenes: imagenesUrls,
         videos: videosLimpios,
@@ -163,7 +158,7 @@ export default function ProductoForm({ producto, onSuccess, onCancel }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="precio">Precio *</Label>
+            <Label htmlFor="precio">Precio </Label>
             <Input
               id="precio"
               type="number"
@@ -171,7 +166,6 @@ export default function ProductoForm({ producto, onSuccess, onCancel }) {
               value={precio}
               onChange={(e) => setPrecio(e.target.value)}
               placeholder="0.00"
-              required
             />
           </div>
 

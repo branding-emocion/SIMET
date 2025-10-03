@@ -49,7 +49,7 @@ export default function ClientesPublic() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-serif tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-serif tracking-tight uppercase">
               Nuestros Clientes
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed text-slate-200">

@@ -53,7 +53,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
           >
-            <h1 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight text-balance">
+            <h1 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight text-balance uppercase">
               Nuestros Proyectos
             </h1>
             <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-slate-100 text-pretty">

@@ -176,7 +176,7 @@ export default function AdminProjectsPage() {
                             </p>
                           </div>
                           <div className="flex gap-2">
-                            <Link href={`/Projects/${project.id}`}>
+                            <Link href={`/DesarrolloProyectos/${project.id}`}>
                               <Button variant="outline" size="sm">
                                 <Eye className="w-4 h-4" />
                               </Button>

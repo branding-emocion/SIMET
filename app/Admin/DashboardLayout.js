@@ -12,6 +12,7 @@ import {
   MonitorXIcon,
   University,
   Users,
+  UsersIcon,
   WallpaperIcon,
   Warehouse,
 } from "lucide-react";
@@ -45,6 +46,12 @@ const DashboardLayout = ({ children }) => {
       name: "Proyectos",
       link: "/Admin/Projects",
       icon: <University className="w-5 h-5" />,
+      // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
+    },
+    {
+      name: "Clientes",
+      link: "/Admin/Clientes",
+      icon: <UsersIcon className="w-5 h-5" />,
       // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
     },
   ];

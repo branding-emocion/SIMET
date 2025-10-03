@@ -59,12 +59,22 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">+51 XXX XXX XXX</span>
+                <a
+                  href="tel:+51950395374"
+                  className="flex items-center space-x-1"
+                >
+                  <Phone className="w-4 h-4 text-orange-500" />
+                  <span className="text-gray-600">+51 (950) 395-374</span>
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">info@simetagsac.com</span>
+                <a
+                  href="mailto:ventas@simetag.com"
+                  className="flex items-center space-x-1"
+                >
+                  <Mail className="w-4 h-4 text-orange-500" />
+                  <span className="text-gray-600">ventas@simetag.com</span>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -95,7 +105,7 @@ export default function Footer() {
             </div>
             <div className="mt-6">
               <Link
-                href="/contacto"
+                href="/ontacto"
                 className="inline-block bg-orange-500 text-white px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
               >
                 Solicitar Cotización
@@ -112,7 +122,8 @@ export default function Footer() {
           className="border-t border-gray-200 mt-8 pt-8 text-center"
         >
           <p className="text-gray-600">
-            © 2024 SIMET AG SAC. Todos los derechos reservados.
+            © {new Date().getFullYear()} SIMET AG SAC. Todos los derechos
+            reservados.
           </p>
         </motion.div>
       </div>

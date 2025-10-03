@@ -28,12 +28,12 @@ export async function POST(request) {
       .join(""); // Join para unir todas las filas en un solo string
 
   const mailOptions = {
-    from: '"MCH ABOGADOS - Notificaciones" <notificacion@brandingemocion.net>',
-    to: `mchabogados@legalmch.com`, // Enviar a la empresa y al cliente
+    from: '"SIMET - Notificaciones" <notificacion@brandingemocion.net>',
+    to: `ventas@simetag.com.pe`, // Enviar a la empresa y al cliente
     subject: `Nuevo contacto recibido - ${data?.Nombre || ""}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
-        <h2 style="color: #4CAF50; text-align: center;">Formulario de Contacto MCHABOGADOS</h2>
+        <h2 style="color: #4CAF50; text-align: center;">Formulario de Contacto SIMET</h2>
         <p style="text-align: center; color: #333;">
           Hemos recibido de contacto a continuación, los detalles de su solicitud:
         </p>

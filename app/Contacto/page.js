@@ -92,8 +92,12 @@ export default function ContactoPage() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       Teléfono
                     </h3>
-                    <p className="text-gray-600">+51 (xxx) xxx-xxxx</p>
-                    <p className="text-gray-600">+51 (xxx) xxx-xxxx</p>
+                    <a href="tel:+51950395374">
+                      <p className="text-gray-600">+51 (950) 395-374</p>
+                    </a>
+                    <a href="tel:+51044549490">
+                      <p className="text-gray-600">+51 (044) 549-490</p>
+                    </a>
                   </div>
                 </motion.div>
 
@@ -124,8 +128,10 @@ export default function ContactoPage() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       Dirección
                     </h3>
-                    <p className="text-gray-600">Zona Industrial</p>
-                    <p className="text-gray-600">Lima, Perú</p>
+                    <p className="text-gray-600">Psje. Nicolini S/N Lote 25</p>
+                    <p className="text-gray-600">
+                      Ex Fundo Larrea - Trujillo - La Libertad
+                    </p>
                   </div>
                 </motion.div>
 

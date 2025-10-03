@@ -135,7 +135,7 @@ const HeroCarousel = () => {
                         size="lg"
                         className="bg-white text-primary hover:cursor-pointer hover:bg-teal-50 px-8 py-4 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 uppercase"
                       >
-                        Solicitar Consulta
+                        Contacto
                       </Button>
                     </Link>
                   )}

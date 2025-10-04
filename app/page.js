@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { servicios } from "@/lib/servicios-data";
 import HeroCarousel from "@/components/HeroSection";
+import CategoriasSection from "@/components/CategoriasSection";
 
 export default function HomePage() {
   const categorias = [
@@ -72,6 +73,8 @@ export default function HomePage() {
       {/* Hero Section */}
 
       <HeroCarousel />
+
+      <CategoriasSection />
       {/* Client Logos */}
       <section className="py-8 sm:py-12 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4">

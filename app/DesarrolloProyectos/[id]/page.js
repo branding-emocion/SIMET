@@ -67,7 +67,7 @@ export default function ProjectDetailPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen ">
       {/* Hero Image */}
       <motion.div
         initial={{ opacity: 0 }}

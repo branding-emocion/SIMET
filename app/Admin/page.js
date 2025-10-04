@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/card";
 import { auth } from "@/firebase/firebaseClient";
 import useAuthState from "@/lib/useAuthState";
-import { FileText, Send } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
 const Home = () => {

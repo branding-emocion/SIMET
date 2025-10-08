@@ -15,18 +15,35 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase/firebaseClient";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [categorias, setCategorias] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  const loadCategorias = async () => {
+    setLoading(true);
+    try {
+      const querySnapshot = await getDocs(collection(db, "categorias"));
+      const categoriasData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setCategorias(categoriasData);
+    } catch (error) {
+      console.error("Error al cargar categorías:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadCategorias();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -57,51 +74,51 @@ const Header = () => {
     },
   ];
 
-  const Servicios = [
-    { name: "Fabricaciones", href: "/Servicios/Fabricaciones" },
-    {
-      name: "Mantenimientos",
-      href: "/Servicios/Mantenimientos",
-      submenu: [
-        { name: "Fábrica", href: "/Servicios/Mantenimientos/Fabrica" },
-        {
-          name: "Campo",
-          href: "/Servicios/Mantenimientos/Campo",
-        },
-      ],
-    },
-    {
-      name: "Instalación de equipos de Filtrado",
-      href: "/Servicios/EquiposFiltrado",
-    },
-    {
-      name: "Trabajos en acero inoxidable",
-      href: "/Servicios/AceroInoxidable",
-    },
-    {
-      name: "limpieza industrial por granallado",
-      href: "/Servicios/IndustrialGranallado",
-    },
-    {
-      name: "Pintura",
-      href: "/Servicios/Pintura",
-      submenu: [
-        { name: "Industrial", href: "/Servicios/Pintura/Industrial" },
-        {
-          name: "Líquida",
-          href: "/Servicios/Pintura/Electrostatico",
-        },
-        {
-          name: "Electroacústica",
-          href: "/Servicios/Pintura/AceroInoxidable",
-        },
-      ],
-    },
-    {
-      name: "Corte por plasma",
-      href: "/Servicios/CortePorPlasma",
-    },
-  ];
+  // const Servicios = [
+  //   { name: "Fabricaciones", href: "/Servicios/Fabricaciones" },
+  //   {
+  //     name: "Mantenimientos",
+  //     href: "/Servicios/Mantenimientos",
+  //     submenu: [
+  //       { name: "Fábrica", href: "/Servicios/Mantenimientos/Fabrica" },
+  //       {
+  //         name: "Campo",
+  //         href: "/Servicios/Mantenimientos/Campo",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Instalación de equipos de Filtrado",
+  //     href: "/Servicios/EquiposFiltrado",
+  //   },
+  //   {
+  //     name: "Trabajos en acero inoxidable",
+  //     href: "/Servicios/AceroInoxidable",
+  //   },
+  //   {
+  //     name: "limpieza industrial por granallado",
+  //     href: "/Servicios/IndustrialGranallado",
+  //   },
+  //   {
+  //     name: "Pintura",
+  //     href: "/Servicios/Pintura",
+  //     submenu: [
+  //       { name: "Industrial", href: "/Servicios/Pintura/Industrial" },
+  //       {
+  //         name: "Líquida",
+  //         href: "/Servicios/Pintura/Electrostatico",
+  //       },
+  //       {
+  //         name: "Electroacústica",
+  //         href: "/Servicios/Pintura/AceroInoxidable",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Corte por plasma",
+  //     href: "/Servicios/CortePorPlasma",
+  //   },
+  // ];
 
   return (
     <>
@@ -170,11 +187,14 @@ const Header = () => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="w-80 p-2">
-                      {Servicios.map((item) => (
-                        <Link key={item.name} href={item.href}>
+                      {categorias.map((item) => (
+                        <Link
+                          key={item.nombre}
+                          href={`/Servicios?categoria=${item.nombre}`}
+                        >
                           <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                             <div className="text-sm font-medium leading-none">
-                              {item.name}
+                              {item.nombre}
                             </div>
                           </NavigationMenuLink>
                         </Link>

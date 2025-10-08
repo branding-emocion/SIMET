@@ -7,13 +7,11 @@ import Link from "next/link";
 import { servicios } from "@/lib/servicios-data";
 
 export default function ServicioPage({ params }) {
-  const servicio = servicios.find((s) => s.slug == params.slug);
+  console.log("params.slug", params.slug);
 
   if (!servicio) {
     notFound();
   }
-
-  const IconoComponente = servicio.icono;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,7 +20,7 @@ export default function ServicioPage({ params }) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Link
-              href="/servicios"
+              href="/Servicios"
               className="inline-flex items-center text-orange-400 hover:text-orange-300 mb-6 transition-colors"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -133,7 +131,7 @@ export default function ServicioPage({ params }) {
                     className="relative overflow-hidden rounded-lg shadow-lg group"
                   >
                     <img
-                      src={imagen || "/placeholder.svg"}
+                      src={imagen || ""}
                       alt={`${servicio.titulo} - Trabajo ${index + 1}`}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     />

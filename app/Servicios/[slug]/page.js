@@ -1,185 +1,311 @@
+// import { getServicioBySlug } from "@/lib/servicios-firebase";
+// import { notFound } from "next/navigation";
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+// import HeroSection from "./HeroSection";
+
+// export default async function ServicioPage({ params }) {
+//   const { slug } = await params;
+//   const servicio = await getServicioBySlug(slug);
+
+//   console.log("servicio", servicio);
+
+//   // Si no existe el servicio, mostrar 404
+//   if (!servicio) {
+//     notFound();
+//   }
+
+//   return (
+//     <main>
+//       {/* Hero Section con datos dinámicos del servicio */}
+//       <HeroSection
+//         title={servicio.nombre}
+//         subtitle={servicio.descripcion}
+//         backgroundImage={servicio.imagenes?.[0] || ""}
+//         overlayFrom="from-slate-900/85"
+//         overlayTo="to-slate-900/70"
+//         height="h-[60vh]"
+//       />
+
+//       {/* Contenido del servicio */}
+//       <section className="container mx-auto px-4 py-16">
+//         <div className="grid lg:grid-cols-3 gap-8">
+//           {/* Información principal */}
+//           <div className="lg:col-span-2 space-y-8">
+//             <div>
+//               <h2 className="text-3xl font-bold mb-4 font-serif">
+//                 Acerca de este producto
+//               </h2>
+//               <p className="text-lg leading-relaxed text-muted-foreground">
+//                 {servicio.descripcion}
+//               </p>
+//             </div>
+
+//             {servicio.imagenes && servicio.imagenes.length > 1 && (
+//               <Card>
+//                 <CardHeader>
+//                   <CardTitle>Galería de imágenes</CardTitle>
+//                 </CardHeader>
+//                 <CardContent>
+//                   <div className="grid md:grid-cols-2 gap-4">
+//                     {servicio.imagenes.map((imagen, index) => (
+//                       <img
+//                         key={index}
+//                         src={imagen || "/placeholder.svg"}
+//                         alt={`${servicio.nombre} - imagen ${index + 1}`}
+//                         className="w-full h-64 object-cover rounded-lg"
+//                       />
+//                     ))}
+//                   </div>
+//                 </CardContent>
+//               </Card>
+//             )}
+
+//             {servicio.videos && servicio.videos.length > 0 && (
+//               <Card>
+//                 <CardHeader>
+//                   <CardTitle>Videos relacionados</CardTitle>
+//                 </CardHeader>
+//                 <CardContent>
+//                   <div className="space-y-4">
+//                     {servicio.videos.map((video, index) => {
+//                       const videoId = video.includes("youtube.com")
+//                         ? new URL(video).searchParams.get("v")
+//                         : null;
+
+//                       return videoId ? (
+//                         <div key={index} className="aspect-video">
+//                           <iframe
+//                             width="100%"
+//                             height="100%"
+//                             src={`https://www.youtube.com/embed/${videoId}`}
+//                             title={`Video ${index + 1}`}
+//                             frameBorder="0"
+//                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//                             allowFullScreen
+//                             className="rounded-lg"
+//                           />
+//                         </div>
+//                       ) : (
+//                         <a
+//                           key={index}
+//                           href={video}
+//                           target="_blank"
+//                           rel="noopener noreferrer"
+//                           className="text-primary hover:underline block"
+//                         >
+//                           Ver video {index + 1}
+//                         </a>
+//                       );
+//                     })}
+//                   </div>
+//                 </CardContent>
+//               </Card>
+//             )}
+//           </div>
+
+//           {/* Sidebar con CTA */}
+//           <div className="lg:col-span-1">
+//             <Card className="sticky top-4">
+//               <CardHeader>
+//                 <CardTitle>Solicita una cotización</CardTitle>
+//                 <CardDescription>
+//                   Contáctanos para más información sobre este producto
+//                 </CardDescription>
+//               </CardHeader>
+//               <CardContent className="space-y-4">
+//                 <div className="space-y-2">
+//                   <p className="text-sm font-medium">Producto:</p>
+//                   <p className="text-sm text-muted-foreground">
+//                     {servicio.nombre}
+//                   </p>
+//                 </div>
+//                 {servicio.precio > 0 && (
+//                   <div className="space-y-2">
+//                     <p className="text-sm font-medium">Precio:</p>
+//                     <p className="text-2xl font-bold">
+//                       ${servicio.precio.toLocaleString()}
+//                     </p>
+//                   </div>
+//                 )}
+//                 <button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md font-medium transition-colors">
+//                   Contactar ahora
+//                 </button>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         </div>
+//       </section>
+//     </main>
+//   );
+// }
+import { getServicioBySlug } from "@/lib/servicios-firebase";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Phone, Mail, MapPin } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import HeroSection from "./HeroSection";
 import Link from "next/link";
-import { servicios } from "@/lib/servicios-data";
 
-export default function ServicioPage({ params }) {
-  console.log("params.slug", params.slug);
+export default async function ServicioPage({ params, searchParams }) {
+  const { slug } = await params;
+  const servicio = await getServicioBySlug(slug);
 
+  const searchParamsResolved = await searchParams;
+  const categoria = searchParamsResolved?.categoria || null;
+
+  // Si no existe el servicio, mostrar 404
   if (!servicio) {
     notFound();
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-800 to-slate-700 text-white py-25">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Link
-              href="/Servicios"
-              className="inline-flex items-center text-orange-400 hover:text-orange-300 mb-6 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver a Servicios
-            </Link>
+    <main>
+      <HeroSection
+        title={servicio.nombre}
+        subtitle={servicio.descripcion}
+        backgroundImage="/soldadoNosotros.jpg"
+        overlayFrom="from-slate-900/85"
+        overlayTo="to-slate-900/70"
+        height="h-[60vh]"
+        categoria={categoria}
+      />
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="bg-orange-500 p-3 rounded-full">
-                <IconoComponente className="w-8 h-8 text-white" />
-              </div>
-              <Badge className="bg-orange-500 hover:bg-orange-600 text-lg px-4 py-2">
-                {servicio.categoria}
-              </Badge>
+      {/* Contenido del servicio */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Información principal */}
+          <div className="lg:col-span-2 space-y-8">
+            {servicio.imagenes && servicio.imagenes.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Imagen del producto</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src={servicio.imagenes[0] || "/placeholder.svg"}
+                    alt={servicio.nombre}
+                    className="w-full h-auto rounded-lg object-contain max-h-[500px] bg-muted"
+                  />
+                </CardContent>
+              </Card>
+            )}
+
+            <div>
+              <h2 className="text-3xl font-bold mb-4 font-serif">
+                Acerca de este producto
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                {servicio.descripcion}
+              </p>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
-              {servicio.titulo}
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              {servicio.descripcion}
-            </p>
+            {servicio.imagenes && servicio.imagenes.length > 1 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Galería de imágenes</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {servicio.imagenes.slice(1).map((imagen, index) => (
+                      <img
+                        key={index}
+                        src={imagen || "/placeholder.svg"}
+                        alt={`${servicio.nombre} - imagen ${index + 2}`}
+                        className="w-full h-64 object-cover rounded-lg"
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {servicio.videos && servicio.videos.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Videos relacionados</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {servicio.videos.map((video, index) => {
+                      const videoId = video.includes("youtube.com")
+                        ? new URL(video).searchParams.get("v")
+                        : null;
+
+                      return videoId ? (
+                        <div key={index} className="aspect-video">
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title={`Video ${index + 1}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="rounded-lg"
+                          />
+                        </div>
+                      ) : (
+                        <a
+                          key={index}
+                          href={video}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline block"
+                        >
+                          Ver video {index + 1}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
-        </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 mb-16">
-              {/* Service Image */}
-              <div className="space-y-6">
-                <div className="relative overflow-hidden rounded-lg shadow-lg">
-                  <img
-                    src={servicio.imagen || "/placeholder.svg"}
-                    alt={servicio.titulo}
-                    className="w-full h-80 object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Service Details */}
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                    Descripción del Servicio
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    {servicio.detalles}
+          {/* Sidebar con CTA */}
+          <div className="lg:col-span-1">
+            <Card className="sticky top-4">
+              <CardHeader>
+                <CardTitle>Solicitar mas informacion</CardTitle>
+                <CardDescription>
+                  Contáctanos para más información sobre este producto
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Producto:</p>
+                  <p className="text-sm text-muted-foreground">
+                    {servicio.nombre}
                   </p>
                 </div>
-
-                {/* Características */}
-                <div>
-                  <h3 className="text-2xl font-semibold text-slate-800 mb-4">
-                    Características Principales
-                  </h3>
-                  <ul className="space-y-3">
-                    {servicio.caracteristicas.map((caracteristica, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-gray-700">{caracteristica}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Contact CTA */}
-                <Card className="bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-slate-800 mb-4">
-                      ¿Interesado en este servicio?
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      Contáctanos para recibir una cotización personalizada
+                {servicio.precio > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium">Precio:</p>
+                    <p className="text-2xl font-bold">
+                      ${servicio.precio.toLocaleString()}
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Link href={`/contacto`}>
-                        <Button className="bg-orange-500 hover:bg-orange-600 flex-1 hover:cursor-pointer">
-                          <Phone className="w-4 h-4 mr-2" />
-                          Llamar Ahora
-                        </Button>
-                      </Link>
-                      <Link href={`/contacto`}>
-                        <Button
-                          variant="outline"
-                          className="border-orange-500 text-orange-600 hover:bg-orange-50 flex-1 bg-transparent hover:cursor-pointer"
-                        >
-                          <Mail className="w-4 h-4 mr-2" />
-                          Enviar Email
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            {/* Gallery Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-                Galería de <span className="text-orange-500">Trabajos</span>
-              </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {servicio.galeria.map((imagen, index) => (
-                  <div
-                    key={index}
-                    className="relative overflow-hidden rounded-lg shadow-lg group"
-                  >
-                    <img
-                      src={imagen || ""}
-                      alt={`${servicio.titulo} - Trabajo ${index + 1}`}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Company Info */}
-            <Card className="bg-slate-800 text-white">
-              <CardContent className="p-8">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4">
-                      <span className="text-orange-500">SIMET AG SAC</span>
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed mb-6">
-                      Industria metalmecánica con más de 10 años de experiencia
-                      en el sector agroindustrial, minero y pesquero.
-                      Profesionales dinámicos y capaces de enfrentar los nuevos
-                      retos del mundo de hoy.
-                    </p>
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <MapPin className="w-4 h-4" />
-                      <span>Sector Industrial de Moche, Trujillo</span>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Button
-                      size="lg"
-                      className="bg-orange-500 hover:bg-orange-600"
-                    >
-                      Solicitar Cotización
-                    </Button>
-                  </div>
-                </div>
+                )}
+                <Link href={`Contacto`}>
+                  <button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md font-medium transition-colors">
+                    Contactar ahora
+                  </button>
+                </Link>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
-}
-
-export async function generateStaticParams() {
-  return servicios.map((servicio) => ({
-    slug: servicio.slug,
-  }));
 }

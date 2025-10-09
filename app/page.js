@@ -138,6 +138,21 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <Link href={`/Servicios`}>
+              <div
+                className="p-6 sm:p-8 rounded-lg h-full flex flex-col justify-between transition-all duration-300 hover:shadow-2xl"
+                style={{
+                  background: `linear-gradient(135deg, #f97316 0%, #ea580c 100%)`,
+                }}
+              >
+                <div>
+                  <Factory className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-3 sm:mb-4" />
+                  <h3 className="text-white font-bold text-lg sm:text-xl mb-2 uppercase">
+                    Todos
+                  </h3>
+                </div>
+              </div>
+            </Link>
             {categorias.map((service, index) => (
               <motion.div
                 key={service}
@@ -156,19 +171,10 @@ export default function HomePage() {
                     }}
                   >
                     <div>
-                      {/* <div className="text-white/20 text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
-                        {service.number}
-                      </div> */}
                       <Factory className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-3 sm:mb-4" />
                       <h3 className="text-white font-bold text-lg sm:text-xl mb-2 uppercase">
                         {service.nombre || ""}
                       </h3>
-                      {/* <p className="text-white/90 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">
-                        {service.subtitle}
-                      </p>
-                      <p className="text-white/80 text-xs sm:text-sm">
-                        {service.description}
-                      </p> */}
                     </div>
                   </div>
                 </Link>

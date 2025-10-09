@@ -105,7 +105,7 @@ export default function Footer() {
             </div>
             <div className="mt-6">
               <Link
-                href="/ontacto"
+                href="/Contacto"
                 className="inline-block bg-orange-500 text-white px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
               >
                 Solicitar Cotización

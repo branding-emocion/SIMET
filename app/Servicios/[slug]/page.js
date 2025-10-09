@@ -235,7 +235,7 @@ export default async function ServicioPage({ params, searchParams }) {
                   <CardTitle>Videos relacionados</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {servicio.videos.map((video, index) => {
                       const videoId = video.includes("youtube.com")
                         ? new URL(video).searchParams.get("v")

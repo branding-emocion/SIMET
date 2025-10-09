@@ -116,12 +116,12 @@ export default function ServiciosGrid() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-wrap justify-center gap-3 mb-12"
+              className="flex flex-wrap justify-center gap-3 mb-12  "
             >
               <Button
                 variant={filtroCategoria === "Todos" ? "default" : "outline"}
                 onClick={() => setFiltroCategoria("Todos")}
-                className={`rounded-full px-6 transition-all duration-300 ${
+                className={`rounded-full px-6 transition-all duration-300 uppercase ${
                   filtroCategoria === "Todos"
                     ? "bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30"
                     : "border-2 border-orange-500 text-orange-600 hover:bg-orange-50"
@@ -137,7 +137,7 @@ export default function ServiciosGrid() {
                     filtroCategoria === categoria.id ? "default" : "outline"
                   }
                   onClick={() => setFiltroCategoria(categoria.id)}
-                  className={`rounded-full px-6 transition-all duration-300 ${
+                  className={`rounded-full px-6 transition-all duration-300 uppercase ${
                     filtroCategoria === categoria.id
                       ? "bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30"
                       : "border-2 border-orange-500 text-orange-600 hover:bg-orange-50"
@@ -248,8 +248,8 @@ export default function ServiciosGrid() {
                               categoria?.nombre || ""
                             }`}
                           >
-                            <Button className="w-full bg-orange-500 hover:bg-orange-600 shadow-md hover:shadow-lg transition-all duration-300 group/btn">
-                              <span>Ver Detalles</span>
+                            <Button className="w-full bg-orange-500 hover:cursor-pointer hover:bg-orange-600 shadow-md hover:shadow-lg transition-all duration-300 group/btn">
+                              <span className="uppercase">Ver Detalles</span>
                               <svg
                                 className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"
                                 fill="none"

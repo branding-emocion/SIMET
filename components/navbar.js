@@ -176,32 +176,34 @@ const Header = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger
-                    className={cn(
-                      "group inline-flex h-10 w-max items-center justify-center uppercase rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary  focus:outline-none disabled:pointer-events-none disabled:opacity-50 bg-transparent",
-                      isScrolled ? "text-gray-700" : "text-white "
-                    )}
-                  >
-                    Servicios{" "}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-80 p-2">
-                      {categorias.map((item) => (
-                        <Link
-                          key={item.nombre}
-                          href={`/Servicios?categoria=${item.nombre}`}
-                        >
-                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                            <div className="text-sm font-medium leading-none">
-                              {item.nombre}
-                            </div>
-                          </NavigationMenuLink>
-                        </Link>
-                      ))}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                <Link href={"/Servicios"} className="hover:cursor-pointer">
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger
+                      className={cn(
+                        "group inline-flex h-10 w-max items-center justify-center uppercase rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary  focus:outline-none disabled:pointer-events-none disabled:opacity-50 bg-transparent",
+                        isScrolled ? "text-gray-700" : "text-white "
+                      )}
+                    >
+                      Servicios
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="w-80 p-2">
+                        {categorias.map((item) => (
+                          <Link
+                            key={item.nombre}
+                            href={`/Servicios?categoria=${item.nombre}`}
+                          >
+                            <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                              <div className="text-sm font-medium leading-none">
+                                {item.nombre}
+                              </div>
+                            </NavigationMenuLink>
+                          </Link>
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </Link>
 
                 <NavigationMenuItem>
                   <Link href="/DesarrolloProyectos">

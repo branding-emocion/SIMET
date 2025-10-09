@@ -60,7 +60,7 @@ export default function HomePage() {
       <HeroCarousel />
 
       <CategoriasSection />
-      {/* Client Logos */}
+     
 
       {/* About Preview */}
       <section className="bg-white">

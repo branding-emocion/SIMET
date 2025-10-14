@@ -74,52 +74,6 @@ const Header = () => {
     },
   ];
 
-  // const Servicios = [
-  //   { name: "Fabricaciones", href: "/Servicios/Fabricaciones" },
-  //   {
-  //     name: "Mantenimientos",
-  //     href: "/Servicios/Mantenimientos",
-  //     submenu: [
-  //       { name: "Fábrica", href: "/Servicios/Mantenimientos/Fabrica" },
-  //       {
-  //         name: "Campo",
-  //         href: "/Servicios/Mantenimientos/Campo",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     name: "Instalación de equipos de Filtrado",
-  //     href: "/Servicios/EquiposFiltrado",
-  //   },
-  //   {
-  //     name: "Trabajos en acero inoxidable",
-  //     href: "/Servicios/AceroInoxidable",
-  //   },
-  //   {
-  //     name: "limpieza industrial por granallado",
-  //     href: "/Servicios/IndustrialGranallado",
-  //   },
-  //   {
-  //     name: "Pintura",
-  //     href: "/Servicios/Pintura",
-  //     submenu: [
-  //       { name: "Industrial", href: "/Servicios/Pintura/Industrial" },
-  //       {
-  //         name: "Líquida",
-  //         href: "/Servicios/Pintura/Electrostatico",
-  //       },
-  //       {
-  //         name: "Electroacústica",
-  //         href: "/Servicios/Pintura/AceroInoxidable",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     name: "Corte por plasma",
-  //     href: "/Servicios/CortePorPlasma",
-  //   },
-  // ];
-
   return (
     <>
       <motion.header
@@ -230,13 +184,25 @@ const Header = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/Contacto">
+                    <NavigationMenuLink
+                      className={cn(
+                        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                        isScrolled ? "text-gray-700" : "text-white"
+                      )}
+                    >
+                      Contacto{" "}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 
             {/* Mobile Menu Button and Quote Button */}
             <div className="flex items-center space-x-2 md:space-x-4">
               {/* Quote Button */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
@@ -252,8 +218,25 @@ const Header = () => {
                     CONTACTO
                   </Button>
                 </Link>
-              </motion.div>
+              </motion.div> */}
 
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <Link href="/Admin">
+                  <Button
+                    className={`px-3 py-2 md:px-6 md:py-2 rounded-full font-bold transition-all duration-300 uppercase shadow-lg hover:cursor-pointer text-xs md:text-sm ${
+                      isScrolled
+                        ? "bg-primary text-white hover:bg-primary/90 hover:shadow-xl"
+                        : "bg-white text-primary hover:bg-white/90 hover:shadow-xl"
+                    }`}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </motion.div>
               <button
                 className="lg:hidden p-2"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

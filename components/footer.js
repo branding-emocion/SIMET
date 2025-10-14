@@ -61,7 +61,7 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <a
                   href="tel:+51950395374"
-                  className="flex items-center space-x-1"
+                  className="flex items-center space-x-3"
                 >
                   <Phone className="w-4 h-4 text-orange-500" />
                   <span className="text-gray-600">+51 (950) 395-374</span>
@@ -70,10 +70,10 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <a
                   href="mailto:ventas@simetag.com"
-                  className="flex items-center space-x-1"
+                  className="flex items-center space-x-3"
                 >
                   <Mail className="w-4 h-4 text-orange-500" />
-                  <span className="text-gray-600">ventas@simetag.com</span>
+                  <span className="text-gray-600"> ventas@simetag.com</span>
                 </a>
               </div>
             </div>

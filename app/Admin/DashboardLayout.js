@@ -34,7 +34,7 @@ const DashboardLayout = ({ children }) => {
       name: "Usuarios",
       link: "/Admin/Usuarios",
       icon: <Users className="w-5 h-5" />,
-      // hidden: !claims?.isSuperAdmin,
+      hidden: !claims?.isSuperAdmin,
     },
     {
       name: "Productos",

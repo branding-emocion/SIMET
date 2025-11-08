@@ -51,18 +51,18 @@ export default function HomePage() {
     "Hass Perú",
     "Talsa",
   ];
+
   const duplicatedClients = [...clients, ...clients];
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-
+      {/* === Hero Section === */}
       <HeroCarousel />
 
+      {/* === Sección de categorías destacadas === */}
       <CategoriasSection />
-     
 
-      {/* About Preview */}
+      {/* === About Section === */}
       <section className="bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -120,7 +120,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* === Services Grid === */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
@@ -137,7 +137,9 @@ export default function HomePage() {
             </p>
           </motion.div>
 
+          {/* === Grid de categorías === */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Tarjeta "Todos" */}
             <Link href={`/Servicios`}>
               <div
                 className="p-6 sm:p-8 rounded-lg h-full flex flex-col justify-between transition-all duration-300 hover:shadow-2xl"
@@ -153,9 +155,11 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
+
+            {/* Tarjetas dinámicas */}
             {categorias.map((service, index) => (
               <motion.div
-                key={service}
+                key={service.id || `${service.nombre}-${index}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -184,7 +188,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Projects Preview */}
+      {/* === Projects Preview === */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">

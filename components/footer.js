@@ -10,6 +10,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const socialLinks = [
@@ -22,7 +23,7 @@ export default function Footer() {
     <footer className="bg-gray-100 text-gray-800 py-12 border-t border-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Logo and Company Info */}
+          {/* Logo y descripción */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +42,7 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Información de contacto */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,13 +74,13 @@ export default function Footer() {
                   className="flex items-center space-x-3"
                 >
                   <Mail className="w-4 h-4 text-orange-500" />
-                  <span className="text-gray-600"> ventas@simetag.com</span>
+                  <span className="text-gray-600">ventas@simetag.com</span>
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Social Media */}
+          {/* Redes sociales y cotización */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +91,7 @@ export default function Footer() {
               Síguenos
             </h4>
             <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
@@ -103,10 +104,11 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-            <div className="mt-6">
+
+            <div className="mt-6 space-y-3">
               <Link
                 href="/Contacto"
-                className="inline-block bg-orange-500 text-white px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors"
+                className="inline-block bg-orange-500 text-white px-6 py-2 rounded font-semibold hover:bg-orange-600 transition-colors shadow-md"
               >
                 Solicitar Cotización
               </Link>
@@ -114,14 +116,29 @@ export default function Footer() {
           </motion.div>
         </div>
 
+        {/* Línea divisoria y derechos */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="border-t border-gray-200 mt-8 pt-8 text-center"
+          className="border-t border-gray-200 mt-10 pt-8 text-center space-y-6"
         >
-          <p className="text-gray-600">
+          {/* === Botón Login al pie de página === */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Link href="/Admin">
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-10 py-3 rounded-full shadow-md uppercase tracking-wide transition-all">
+                Login
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Derechos reservados */}
+          <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} SIMET AG SAC. Todos los derechos
             reservados.
           </p>

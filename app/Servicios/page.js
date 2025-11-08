@@ -8,7 +8,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebaseClient";
-import { Package, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 export default function Servicios({ searchParams }) {
   const categoriaParam = use(searchParams).categoria;
@@ -24,12 +24,9 @@ export default function Servicios({ searchParams }) {
 
   useEffect(() => {
     if (categoriaParam && categorias.length > 0) {
-      const categoriaEncontrada = categorias.find((cat) => {
-        return cat.nombre.trim() === categoriaParam.trim();
-      });
-
-      console.log("categoriaEncontrada", categoriaEncontrada);
-
+      const categoriaEncontrada = categorias.find(
+        (cat) => cat.nombre.trim() === categoriaParam.trim()
+      );
       if (categoriaEncontrada) {
         setFiltroCategoria(categoriaEncontrada.id);
       }
@@ -70,7 +67,7 @@ export default function Servicios({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
+      {/* === Hero Section === */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -96,7 +93,7 @@ export default function Servicios({ searchParams }) {
         </div>
       </section>
 
-      {/* Content Section */}
+      {/* === Contenido === */}
       <Suspense
         fallback={
           <div className="flex items-center justify-center h-screen">
@@ -106,11 +103,11 @@ export default function Servicios({ searchParams }) {
       >
         <section className="py-16">
           <div className="container mx-auto px-4">
-            {/* Filter Buttons */}
+            {/* === Filtros tipo pestañas === */}
             {loading ? (
               <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {[...Array(5)].map((_, i) => (
-                  <Skeleton key={i} className="h-10 w-32 rounded-full" />
+                  <Skeleton key={i} className="h-8 w-24 rounded-md" />
                 ))}
               </div>
             ) : (
@@ -118,40 +115,38 @@ export default function Servicios({ searchParams }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-wrap justify-center gap-3 mb-12  "
+                className="flex flex-nowrap justify-start md:justify-center gap-4 mb-12 border-b border-gray-200 overflow-x-auto scrollbar-hide px-2"
               >
-                <Button
-                  variant={filtroCategoria === "Todos" ? "default" : "outline"}
+                {/* Botón "Todos" */}
+                <button
                   onClick={() => setFiltroCategoria("Todos")}
-                  className={`rounded-full px-6 transition-all duration-300 uppercase ${
+                  className={`relative px-4 py-2 text-sm md:text-base font-medium rounded-t-md whitespace-nowrap transition-all duration-200 ${
                     filtroCategoria === "Todos"
-                      ? "bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30"
-                      : "border-2 border-orange-500 text-orange-600 hover:bg-orange-50"
+                      ? "bg-orange-500 text-white shadow-sm"
+                      : "text-gray-700 hover:text-orange-500"
                   }`}
                 >
-                  <Package className="w-4 h-4 mr-2" />
                   Todos
-                </Button>
+                </button>
+
+                {/* Botones de categorías */}
                 {categorias.map((categoria) => (
-                  <Button
+                  <button
                     key={categoria.id}
-                    variant={
-                      filtroCategoria === categoria.id ? "default" : "outline"
-                    }
                     onClick={() => setFiltroCategoria(categoria.id)}
-                    className={`rounded-full px-6 transition-all duration-300 uppercase ${
+                    className={`relative px-4 py-2 text-sm md:text-base font-medium rounded-t-md whitespace-nowrap transition-all duration-200 ${
                       filtroCategoria === categoria.id
-                        ? "bg-orange-500 hover:bg-orange-600 shadow-lg shadow-orange-500/30"
-                        : "border-2 border-orange-500 text-orange-600 hover:bg-orange-50"
+                        ? "bg-orange-500 text-white shadow-sm"
+                        : "text-gray-700 hover:text-orange-500"
                     }`}
                   >
                     {categoria.nombre}
-                  </Button>
+                  </button>
                 ))}
               </motion.div>
             )}
 
-            {/* Products Grid */}
+            {/* === Grid de Servicios === */}
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[...Array(6)].map((_, i) => (
@@ -181,8 +176,8 @@ export default function Servicios({ searchParams }) {
                   No hay productos disponibles
                 </h3>
                 <p className="text-gray-600 max-w-md mx-auto">
-                  No se encontraron productos en esta categoría. Intenta con
-                  otra categoría.
+                  No se encontraron servicios en esta categoría. Intenta con
+                  otra.
                 </p>
               </motion.div>
             ) : (
@@ -197,8 +192,15 @@ export default function Servicios({ searchParams }) {
                 >
                   {productosFiltrados.map((producto, index) => {
                     const categoria = categorias.find(
-                      (cat) => cat.id == producto.categoriaId
+                      (cat) => cat.id === producto.categoriaId
                     );
+
+                    // Extraer ID de video si hay uno
+                    const videoId =
+                      producto.videos?.length > 0 &&
+                      producto.videos[0].includes("youtube.com")
+                        ? new URL(producto.videos[0]).searchParams.get("v")
+                        : null;
 
                     return (
                       <motion.div
@@ -208,29 +210,35 @@ export default function Servicios({ searchParams }) {
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                       >
                         <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden h-full flex flex-col">
-                          <div className="relative overflow-hidden">
-                            <div className="aspect-video relative">
+                          <div className="relative aspect-video overflow-hidden rounded-t-lg">
+                            {videoId ? (
+                              <iframe
+                                src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+                                title={`Video de ${producto.nombre}`}
+                                width="100%"
+                                height="100%"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                              />
+                            ) : (
                               <img
                                 src={producto.imagenes?.[0] || ""}
                                 alt={producto.nombre}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                               />
-                            </div>
+                            )}
+
+                            {/* Overlay con degradado */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+                            {/* Badge de categoría */}
                             {categoria && (
                               <div className="absolute top-4 left-4">
                                 <Badge className="bg-orange-500 hover:bg-orange-600 text-white shadow-lg backdrop-blur-sm">
                                   {categoria.nombre}
                                 </Badge>
-                              </div>
-                            )}
-
-                            {producto.precio > 0 && (
-                              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                                <span className="text-orange-600 font-bold text-sm">
-                                  ${producto.precio.toLocaleString()}
-                                </span>
                               </div>
                             )}
                           </div>
@@ -246,11 +254,9 @@ export default function Servicios({ searchParams }) {
                               {producto.descripcion}
                             </p>
                             <Link
-                              href={`/Servicios/${producto.id}?categoria=${
-                                categoria?.nombre || ""
-                              }`}
+                              href={`/Servicios/${producto.id}?categoria=${categoria?.nombre || ""}`}
                             >
-                              <Button className="w-full bg-orange-500 hover:cursor-pointer hover:bg-orange-600 shadow-md hover:shadow-lg transition-all duration-300 group/btn">
+                              <Button className="w-full bg-orange-500 hover:bg-orange-600 shadow-md hover:shadow-lg transition-all duration-300 group/btn">
                                 <span className="uppercase">Ver Detalles</span>
                                 <svg
                                   className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"

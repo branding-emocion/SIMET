@@ -209,24 +209,6 @@ const Header = () => {
           </NavigationMenu>
 
           <div className="flex items-center space-x-2 md:space-x-4">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-            >
-              <Link href="/Admin">
-                <Button
-                  className={`px-3 py-2 md:px-6 md:py-2 rounded-full font-bold transition-all duration-300 uppercase shadow-lg text-xs md:text-sm ${
-                    isScrolled
-                      ? "bg-primary text-white hover:bg-primary/90 hover:shadow-xl"
-                      : "bg-white text-primary hover:bg-white/90 hover:shadow-xl"
-                  }`}
-                >
-                  Login
-                </Button>
-              </Link>
-            </motion.div>
-
             <button
               className="lg:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

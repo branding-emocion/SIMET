@@ -120,7 +120,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/QuienesSomos"
+                    href="/quienessomos"
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary",
                       isScrolled ? "text-gray-700" : "text-white"
@@ -167,7 +167,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/DesarrolloProyectos"
+                    href="/desarrolloproyectos"
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary",
                       isScrolled ? "text-gray-700" : "text-white"
@@ -181,7 +181,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/Clientes"
+                    href="/clientes"
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary",
                       isScrolled ? "text-gray-700" : "text-white"
@@ -195,7 +195,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/Contacto"
+                    href="/contacto"
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary",
                       isScrolled ? "text-gray-700" : "text-white"
@@ -298,7 +298,7 @@ const Header = () => {
               </Link>
 
               <Link
-                href="/Contacto"
+                href="/contacto"
                 onClick={closeMobileMenu}
                 className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md transition-colors font-medium uppercase"
               >

@@ -1,215 +1,154 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { useProjects } from "@/hooks/useProjects";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Search, Filter, ArrowRight } from "lucide-react";
-import { ProjectCard } from "./ProjectCard";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function HomePage() {
-  const [filters, setFilters] = useState({});
-  const [searchTerm, setSearchTerm] = useState("");
-  const { projects, loading, error } = useProjects(filters);
-
-  const filteredProjects = projects.filter(
-    (project) =>
-      project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.client.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleStatusFilter = (status) => {
-    setFilters((prev) => ({
-      ...prev,
-      status: status === "all" ? undefined : status,
-    }));
-  };
-
+export default function DesarrolloProyectos() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <main className="bg-gray-50 min-h-screen flex flex-col">
+      {/* === HERO === */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/QuienesSomos/QuienesSomos.jpg')`,
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/QuienesSomos/QuienesSomos.jpg')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
 
-        <div className="relative z-10 container mx-auto px-4 text-center text-white max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-          >
-            <h1 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight text-balance uppercase">
-              Nuestros Proyectos
-            </h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-slate-100 text-pretty">
-              Más de 10 años ejecutando proyectos de diseño, fabricación,
-              mantenimiento y montaje de estructuras metálicas para el sector
-              agroindustrial, minero y pesquero.
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-10 text-center text-white px-6"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight tracking-tight">
+            Ingeniería y <span className="text-amber-500">Desarrollo</span> de Proyectos
+          </h1>
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed">
+            Desarrollamos soluciones integrales de ingeniería: desde la planificación y diseño
+            hasta la ejecución, garantizando eficiencia, seguridad y calidad.
+          </p>
+        </motion.div>
       </section>
 
-      {/* Filters Section */}
-      <section className="py-12 px-4 border-b bg-card/50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col md:flex-row gap-6 items-center justify-between"
-          >
-            <div className="relative w-full md:w-[420px]">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-              <Input
-                placeholder="Buscar proyectos..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 h-12 text-base bg-background border-border/60 focus:border-primary transition-colors"
-              />
-            </div>
+      {/* === SECCIÓN PRINCIPAL === */}
+      <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-white via-gray-50 to-amber-50/20">
+        {/* Texto institucional */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-4xl mx-auto mb-16"
+        >
+          <div className="w-24 h-[3px] bg-amber-500 mx-auto mb-5 rounded-full" />
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Compromiso, innovación y precisión
+          </h2>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            En <span className="font-semibold text-amber-600">Grupo SIMET</span>, la ingeniería y
+            desarrollo de proyectos son el pilar de nuestro servicio industrial. Diseñamos,
+            planificamos y ejecutamos proyectos con excelencia técnica, innovación y seguridad.
+          </p>
+        </motion.div>
 
-            <div className="flex gap-3 items-center w-full md:w-auto">
-              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <Filter className="w-4 h-4" />
-                <span className="hidden sm:inline">Filtrar por:</span>
-              </div>
-              <Select onValueChange={handleStatusFilter} defaultValue="all">
-                <SelectTrigger className="w-full md:w-52 h-12 bg-background border-border/60">
-                  <SelectValue placeholder="Estado" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Todos los estados</SelectItem>
-                  <SelectItem value="En progreso">En progreso</SelectItem>
-                  <SelectItem value="Finalizado">Finalizado</SelectItem>
-                  <SelectItem value="Planeado">Planeado</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          {loading ? (
-            <div className="text-center py-32">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 1,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }}
-                className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full mx-auto"
-              />
-              <p className="mt-6 text-muted-foreground text-lg">
-                Cargando proyectos...
-              </p>
-            </div>
-          ) : error ? (
-            <div className="text-center py-32">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-destructive/10 mb-4">
-                <span className="text-2xl">⚠️</span>
-              </div>
-              <p className="text-destructive text-lg font-medium">
-                Error: {error}
-              </p>
-            </div>
-          ) : filteredProjects.length === 0 ? (
-            <div className="text-center py-32">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted mb-6">
-                <Search className="w-10 h-10 text-muted-foreground" />
-              </div>
-              <p className="text-muted-foreground text-xl font-medium">
-                No se encontraron proyectos
-              </p>
-              <p className="text-muted-foreground text-sm mt-2">
-                Intenta ajustar los filtros de búsqueda
-              </p>
-            </div>
-          ) : (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mb-8"
-              >
-                <p className="text-sm text-muted-foreground">
-                  Mostrando{" "}
-                  <span className="font-semibold text-foreground">
-                    {filteredProjects.length}
-                  </span>{" "}
-                  {filteredProjects.length === 1 ? "proyecto" : "proyectos"}
-                </p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {filteredProjects.map((project, index) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    index={index}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 border-t">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-              </span>
-              Disponibles para nuevos proyectos
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance tracking-tight">
-              ¿Tienes un proyecto en mente?
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 text-pretty max-w-2xl mx-auto leading-relaxed">
-              Contáctanos y descubre cómo podemos ayudarte a materializar tus
-              ideas con calidad, experiencia y precios competitivos.
-            </p>
-            <Button
-              size="lg"
-              className="text-lg px-10 h-14 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 group"
+        {/* Imágenes representativas */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          {[
+            {
+              src: "/Ingenieria/personas-trabajando.avif",
+              alt: "Equipo de ingeniería planificando un proyecto",
+            },
+            {
+              src: "/Ingenieria/planos.jpg",
+              alt: "Diseño técnico y planos industriales",
+            },
+            {
+              src: "/Ingenieria/pc-ingenieria.jpg",
+              alt: "Desarrollo de proyectos en computadora",
+            },
+          ].map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.2 }}
+              className="relative h-[320px] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group"
             >
-              <Link href="/Contacto">Contáctanos</Link>
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Capacidades y valores */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+        >
+          {[
+            {
+              title: "Diseño y planificación técnica",
+              desc: "Elaboramos planos, cálculos estructurales y modelado 3D con precisión y seguridad para cada proyecto.",
+            },
+            {
+              title: "Gestión integral de proyectos",
+              desc: "Coordinamos y supervisamos todas las etapas, asegurando calidad, plazos y cumplimiento normativo.",
+            },
+            {
+              title: "Optimización de procesos industriales",
+              desc: "Modernizamos sistemas productivos y mejoramos la eficiencia de líneas de trabajo.",
+            },
+            {
+              title: "Asesoría técnica especializada",
+              desc: "Brindamos soporte técnico y consultoría personalizada durante todo el desarrollo del proyecto.",
+            },
+            {
+              title: "Cálculo estructural y mecánico",
+              desc: "Dimensionamos cada componente siguiendo estándares internacionales de ingeniería.",
+            },
+            {
+              title: "Innovación y seguridad industrial",
+              desc: "Incorporamos tecnologías avanzadas y prácticas seguras en cada fase de ejecución.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="p-6 rounded-2xl bg-white shadow-md hover:shadow-xl border border-gray-100 transition-all duration-300 hover:-translate-y-2"
+            >
+              <h3 className="text-xl font-semibold text-amber-600 mb-3">{item.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* === CTA (Llamado a la acción) === */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-16"
+        >
+          <div className="inline-block px-10 py-6 bg-amber-500 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <Link href="/Contacto" className="text-lg font-semibold tracking-wide">
+              Solicita tu proyecto
+            </Link>
+          </div>
+          <p className="text-gray-600 mt-4 text-sm">
+            Nuestro equipo te asesorará para llevar tus ideas a la realidad industrial.
+          </p>
+        </motion.div>
       </section>
-    </div>
+    </main>
   );
 }

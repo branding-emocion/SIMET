@@ -19,7 +19,6 @@ export default function Servicios({ searchParams }) {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Flechas visibles
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
 
@@ -83,8 +82,8 @@ export default function Servicios({ searchParams }) {
     const el = scrollRef.current;
     if (!el) return;
 
-    setShowLeft(el.scrollLeft > 5);
-    setShowRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 5);
+    setShowLeft(el.scrollLeft > 10);
+    setShowRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 10);
   };
 
   useEffect(() => {
@@ -139,95 +138,80 @@ export default function Servicios({ searchParams }) {
         <section className="py-16 relative">
           <div className="container mx-auto px-4 relative">
 
-            {/* FLECHA IZQUIERDA */}
-            {showLeft && (
-              <button
-                onClick={scrollLeftFn}
-                className="
-                  absolute left-0
-                  top-1/2
-                  -translate-y-1/2
-                  z-30
-                  p-2
-                  rounded-full
-                  bg-gradient-to-r from-white/90 to-white/0
-                  shadow-md
-                  text-gray-600 hover:text-orange-500
-                "
-              >
-                <ChevronLeft size={30} />
-              </button>
-            )}
+            {/* ========================================================= */}
+            {/* === CATEGORÍAS + FLECHAS (CORREGIDO, NO ENCIMA DEL TEXTO) */}
+            {/* ========================================================= */}
 
-            {/* FLECHA DERECHA */}
-            {showRight && (
-              <button
-                onClick={scrollRightFn}
-                className="
-                  absolute right-0
-                  top-1/2
-                  -translate-y-1/2
-                  z-30
-                  p-2
-                  rounded-full
-                  bg-gradient-to-l from-white/90 to-white/0
-                  shadow-md
-                  text-gray-600 hover:text-orange-500
-                "
-              >
-                <ChevronRight size={30} />
-              </button>
-            )}
+            {/* === CONTENEDOR DE CATEGORÍAS + FLECHAS (CORREGIDO) === */}
+<div className="relative w-full mb-6 flex items-center justify-between">
 
-            {/* CATEGORÍAS */}
-            {loading ? (
-              <div className="flex gap-3 justify-center mb-10">
-                {[...Array(5)].map((_, i) => (
-                  <Skeleton key={i} className="w-24 h-8 rounded-md" />
-                ))}
-              </div>
-            ) : (
-              <div
-                ref={scrollRef}
-                onScroll={checkScroll}
-                className="
-                  flex gap-6 
-                  overflow-x-auto 
-                  scrollbar-hide 
-                  border-b 
-                  border-gray-200 
-                  pb-3 
-                  whitespace-nowrap
-                "
-              >
-                <button
-                  onClick={() => setFiltroCategoria("Todos")}
-                  className={`px-4 py-2 rounded-t-md text-sm md:text-base transition ${
-                    filtroCategoria === "Todos"
-                      ? "bg-orange-500 text-white"
-                      : "text-gray-700 hover:text-orange-500"
-                  }`}
-                >
-                  Todos
-                </button>
+  {/* Flecha izquierda (FUERA del scroll) */}
+  {showLeft && (
+    <button
+      onClick={scrollLeftFn}
+      className="text-black hover:text-orange-500 transition p-0 bg-transparent"
+    >
+      <ChevronLeft size={32} />
+    </button>
+  )}
 
-                {categorias.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setFiltroCategoria(cat.id)}
-                    className={`px-4 py-2 rounded-t-md text-sm md:text-base transition ${
-                      filtroCategoria === cat.id
-                        ? "bg-orange-500 text-white"
-                        : "text-gray-700 hover:text-orange-500"
-                    }`}
-                  >
-                    {cat.nombre}
-                  </button>
-                ))}
-              </div>
-            )}
+  {/* CATEGORÍAS (scroll) */}
+  <div
+    ref={scrollRef}
+    onScroll={checkScroll}
+    className="
+      flex gap-6 
+      overflow-x-auto 
+      scrollbar-hide 
+      border-b 
+      border-gray-200 
+      pb-3 
+      whitespace-nowrap 
+      w-full
+      px-4
+    "
+    style={{ scrollBehavior: "smooth" }}
+  >
+    <button
+      onClick={() => setFiltroCategoria("Todos")}
+      className={`px-4 py-2 rounded-t-md text-sm md:text-base transition ${
+        filtroCategoria === "Todos"
+          ? "bg-orange-500 text-white"
+          : "text-gray-700 hover:text-orange-500"
+      }`}
+    >
+      Todos
+    </button>
 
-            {/* GRID */}
+    {categorias.map((cat) => (
+      <button
+        key={cat.id}
+        onClick={() => setFiltroCategoria(cat.id)}
+        className={`px-4 py-2 rounded-t-md text-sm md:text-base transition ${
+          filtroCategoria === cat.id
+            ? "bg-orange-500 text-white"
+            : "text-gray-700 hover:text-orange-500"
+        }`}
+      >
+        {cat.nombre}
+      </button>
+    ))}
+  </div>
+
+  {/* Flecha derecha (FUERA del scroll) */}
+  {showRight && (
+    <button
+      onClick={scrollRightFn}
+      className="text-black hover:text-orange-500 transition p-0 bg-transparent"
+    >
+      <ChevronRight size={32} />
+    </button>
+  )}
+
+</div>
+
+
+            {/* === GRID === */}
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
                 {[...Array(6)].map((_, i) => (

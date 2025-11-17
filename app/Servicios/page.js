@@ -9,7 +9,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebaseClient";
-import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Servicios({ searchParams }) {
   const categoriaParam = use(searchParams).categoria;
@@ -23,10 +23,8 @@ export default function Servicios({ searchParams }) {
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
 
-  // Referencia al contenedor scrolleable
   const scrollRef = useRef(null);
 
-  // Orden solicitado por el cliente
   const ORDEN_CATEGORIAS = [
     "Fabricación Industrial",
     "Instalaciones y Soldadura",
@@ -37,7 +35,6 @@ export default function Servicios({ searchParams }) {
     "Servicios Logísticos",
   ];
 
-  // Cargar datos
   useEffect(() => {
     loadData();
   }, []);
@@ -68,7 +65,6 @@ export default function Servicios({ searchParams }) {
         ...doc.data(),
       }));
 
-      // Orden correcto
       categoriasData.sort(
         (a, b) =>
           ORDEN_CATEGORIAS.indexOf(a.nombre) -
@@ -83,7 +79,6 @@ export default function Servicios({ searchParams }) {
     }
   };
 
-  // Detectar overflow para activar flechas
   const checkScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -98,12 +93,12 @@ export default function Servicios({ searchParams }) {
   }, []);
 
   const scrollLeftFn = () => {
-    scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
     setTimeout(checkScroll, 200);
   };
 
   const scrollRightFn = () => {
-    scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
     setTimeout(checkScroll, 200);
   };
 
@@ -140,7 +135,6 @@ export default function Servicios({ searchParams }) {
         </div>
       </section>
 
-      {/* CONTENIDO */}
       <Suspense fallback={<div className="py-20 text-center">Cargando...</div>}>
         <section className="py-16 relative">
           <div className="container mx-auto px-4 relative">
@@ -151,14 +145,17 @@ export default function Servicios({ searchParams }) {
                 onClick={scrollLeftFn}
                 className="
                   absolute left-0
-                  top-[94px]
+                  top-1/2
                   -translate-y-1/2
                   z-30
                   p-2
+                  rounded-full
+                  bg-gradient-to-r from-white/90 to-white/0
+                  shadow-md
                   text-gray-600 hover:text-orange-500
                 "
               >
-                <ChevronLeft size={28} />
+                <ChevronLeft size={30} />
               </button>
             )}
 
@@ -168,14 +165,17 @@ export default function Servicios({ searchParams }) {
                 onClick={scrollRightFn}
                 className="
                   absolute right-0
-                  top-[94px]
+                  top-1/2
                   -translate-y-1/2
                   z-30
                   p-2
+                  rounded-full
+                  bg-gradient-to-l from-white/90 to-white/0
+                  shadow-md
                   text-gray-600 hover:text-orange-500
                 "
               >
-                <ChevronRight size={28} />
+                <ChevronRight size={30} />
               </button>
             )}
 
@@ -200,7 +200,6 @@ export default function Servicios({ searchParams }) {
                   whitespace-nowrap
                 "
               >
-                {/* Botón Todos */}
                 <button
                   onClick={() => setFiltroCategoria("Todos")}
                   className={`px-4 py-2 rounded-t-md text-sm md:text-base transition ${
@@ -228,7 +227,7 @@ export default function Servicios({ searchParams }) {
               </div>
             )}
 
-            {/* GRID DE SERVICIOS */}
+            {/* GRID */}
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
                 {[...Array(6)].map((_, i) => (

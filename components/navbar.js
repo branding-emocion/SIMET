@@ -111,6 +111,19 @@ const Header = () => {
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+<NavigationMenuItem>
+  <NavigationMenuLink asChild>
+    <Link
+      href="/Productos"
+      className={cn(
+        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary uppercase",
+        isScrolled ? "text-gray-700" : "text-white"
+      )}
+    >
+      Productos
+    </Link>
+  </NavigationMenuLink>
+</NavigationMenuItem>
 
               {/* === Servicios (Dropdown) === */}
               <NavigationMenuItem>
@@ -234,6 +247,14 @@ const Header = () => {
               >
                 QUIENES SOMOS
               </Link>
+              <Link
+  href="/Productos"
+  onClick={closeMobileMenu}
+  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-md transition-colors font-medium uppercase"
+>
+  PRODUCTOS
+</Link>
+
 
               {/* Dropdown Servicios en móvil */}
               <button

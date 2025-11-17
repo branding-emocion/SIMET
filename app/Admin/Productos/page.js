@@ -26,7 +26,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab("productos")}
             className="rounded-b-none"
           >
-            Productos
+            Servicios
           </Button>
         </div>
 

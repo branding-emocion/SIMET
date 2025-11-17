@@ -37,24 +37,27 @@ const DashboardLayout = ({ children }) => {
       hidden: !claims?.isSuperAdmin,
     },
     {
-      name: "Productos",
-      link: "/Admin/Productos",
+      name: "Servicios",
+      link: "/Admin/Productos", // ⬅️ AQUI CAMBIA: productos = servicios
       icon: <WallpaperIcon className="w-5 h-5" />,
-      // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
+    },
+    {
+      name: "Productos Industriales",
+      link: "/Admin/productos-industriales", // ⬅️ NUEVO MODULO
+      icon: <Warehouse className="w-5 h-5" />,
     },
     {
       name: "Proyectos",
       link: "/Admin/Projects",
       icon: <University className="w-5 h-5" />,
-      // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
     },
     {
       name: "Clientes",
       link: "/Admin/Clientes",
       icon: <UsersIcon className="w-5 h-5" />,
-      // hidden: !(claims?.isAdmin || claims?.isSuperAdmin),
     },
   ];
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;

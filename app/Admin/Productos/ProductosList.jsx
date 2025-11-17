@@ -95,19 +95,19 @@ export default function ProductosList() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Productos</h2>
+        <h2 className="text-2xl font-bold">Servicios</h2>
         <Button onClick={() => setShowForm(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nuevo Producto
+          Nuevo servicio
         </Button>
       </div>
 
       {loading ? (
-        <p className="text-muted-foreground">Cargando productos...</p>
+        <p className="text-muted-foreground">Cargando servicios...</p>
       ) : productos.length === 0 ? (
         <Card>
           <CardContent className="p-6 text-center text-muted-foreground">
-            No hay productos. Crea uno nuevo para comenzar.
+            No hay servicios. Crea uno nuevo para comenzar.
           </CardContent>
         </Card>
       ) : (

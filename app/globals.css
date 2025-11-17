@@ -120,3 +120,11 @@
     @apply bg-background text-foreground;
   }
 }
+/* Oculta scrollbar (mantiene scroll funcional) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

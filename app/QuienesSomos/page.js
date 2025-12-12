@@ -42,7 +42,7 @@ export default function NosotrosPage() {
             </h1>
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
               Profesionales altamente calificados con décadas de experiencia
-              combinada, comprometidos con brindar el mejor servicio legal a
+              combinada, comprometidos con brindar el mejor servicio a
               nuestros clientes
             </p>
           </motion.div>
